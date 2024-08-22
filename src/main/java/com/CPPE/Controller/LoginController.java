@@ -30,16 +30,16 @@ public class LoginController {
 			LoginCredential data=repo.findById(cred.getUsername()).get();
 			if(data.getPassword().equals(cred.getPassword()))
 			{
-			return new ResponseEntity<>("Login Success",HttpStatus.ACCEPTED);
+			return new ResponseEntity<>("login",HttpStatus.ACCEPTED);
 			}
 			else
 			{
-				return new ResponseEntity<>("Invalid Credential",HttpStatus.ACCEPTED);
+				return new ResponseEntity<>("invalid",HttpStatus.ACCEPTED);
 			}
 		}
 		else if(output==false)
 		{
-			return new ResponseEntity<>("Invalid Credential",HttpStatus.ACCEPTED);
+			return new ResponseEntity<>("invalid",HttpStatus.ACCEPTED);
 		}
 		
 		return null;
