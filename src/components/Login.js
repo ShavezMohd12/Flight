@@ -21,7 +21,23 @@ function Login() {
          }
          ).then((response)=>{setUser(response.data)}).catch((error)=>{console.log(error)});
 
-              
+              setTimeout(()=>{console.log(user)},2000);
+    }
+
+
+    function Nvigate()
+    {
+        if(user=="login")
+        {
+
+            //it will not let to open the flightBoooking Directly
+            navigate("/flightBooking",{state:"101xx"});
+        }
+        else if(user=="invalid")
+        {
+            return <h5 style={{color:"white"}}>Invalid Credentials</h5>
+        }
+      
     }
 
     return (
@@ -32,7 +48,10 @@ function Login() {
             <input type="text" onChange={(e) => setUsername(e.target.value)} placeholder="Username"  required/>
             <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" required/>
     <button onClick={()=>{ValidData()}} >Login</button>
-    <h4 style={{color:"white"}}>{user}</h4>
+    {/* <h4 style={{color:"white"}}>{user}</h4> */}
+   
+   <Nvigate/>
+   
     <p ><b>
                 Don't have an account? </b><a href="/register">Register here</a>
             </p>

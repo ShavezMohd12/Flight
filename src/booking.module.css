@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(219, 206, 206);
+    /* margin-top: 15%; */
+    padding:0;
+    /* height: 100vh; */
+    margin:0;
+    width: 100%;
+  }
+
+.bootInput{
+    width: 400px;
+   
+  }
+  .bookFlex{
+   
+    align-items: center;
+    
+  
+  }
+  .selectCls{
+    padding: 10px;
+    margin-top: 8px;
+    width: 200px;
+    text-align: center;
+    border:2px gray solid;
+    border-radius: 10px;
+    /* margin-left: -16px; */
+    }
+  
+  .bttn{
+    width: 20%;
+    padding: 12px;
+    min-width:fit-content;
+    border-radius: 10px;
+   
+    font-size: 20px;
+    position:relative;
+    left:40%;
+    right:50%;
+  }
+.bttn:hover{
+    
+    border: 2px red solid;
+  }
+  
+  .bookingContainer{
+   
+    background-color: black;
+    height:fit-content;
+    opacity:0.6;
+    width: 100%;
+    border-radius: 10px;
+    padding: 2%;
+    display: block;
+   
+  
+  }
+  .flightcontainer
+  {
+     margin:0;
+   
+    background-image: url('C:\Users\Mohd Shavez\OneDrive\Desktop\FLIGHT BOOKING\project\project\src\bookingpage.png');
+    background-size: cover;
+    
+    height:100vh;
+  }
+  
+  
+  
