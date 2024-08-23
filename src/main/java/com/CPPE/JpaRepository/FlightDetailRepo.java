@@ -10,5 +10,13 @@ public interface FlightDetailRepo extends JpaRepository<FlightDetail,String> {
 
 	boolean existsByFlightDate(String flightDate);
 
-	List<FlightDetail> findAllByFlightDate(String date);;
+	List<FlightDetail> findAllByFlightDate(String date);
+
+	
+
+	boolean existsByFlightNumber(int flightNumber);
+
+	FlightDetail findByFlightDateAndFlightNumber(String flightDate,int flightNumber);
+
+	
 }

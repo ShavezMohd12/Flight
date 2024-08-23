@@ -48,6 +48,7 @@ public class LoginController {
 	@GetMapping("/user")
 	public String get()
 	{
+//		Login=repo.findById(get())
 		return "working";
 	}
 

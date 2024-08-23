@@ -2,6 +2,8 @@ package com.CPPE.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +26,7 @@ public class RegistrationController {
 		@PostMapping("/register")
 		public String register(@RequestBody registration register)
 		{
-	
+			
 			try {
 				if(Rrepo.existsById(register.getAdhar())==false) {
 			 Rrepo.save(register);
@@ -44,4 +46,15 @@ public class RegistrationController {
 			}
 			
 		}
+		
+		@GetMapping("/getDetail/{email}")
+		public registration getName(@PathVariable String email)
+		{
+			
+			registration detail=Rrepo.findByEmailId(email);
+			return detail;
+		
+			
+		}
+		
 }
