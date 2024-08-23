@@ -1,0 +1,45 @@
+.confirmationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f7;
+}
+
+.confirmationBox {
+    text-align: center;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.successIcon {
+    width: 80px;
+    margin-bottom: 20px;
+}
+
+.successMessage {
+    font-size: 24px;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.confirmationButton {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.confirmationButton:hover {
+    background-color: #0056b3;
+}

@@ -6,22 +6,57 @@ function Login() {
     const[user,setUser]=useState("");
     const [Username, setUsername] = useState('');
     const [Password, setPassword] = useState('');
-    const[status,setStatus]=useState("u");
-    
+    const[Error,setError]=useState([]);
+   const errors={invalidUser:"",invalidPassword:""};
     const navigate = useNavigate();
     
     var url="http://localhost:8081/login";
    
 
     const ValidData=()=>{
-
+       
+         if(Username=="" && Password=="")
+            {
+                errors.invalidUser="Enter the username";
+                errors.invalidPassword="Enter the Password"
+                setError(errors);
+                console.log(errors);
+            }
+            else  if(!Username.endsWith("@gmail.com"))
+                {
+                    errors.invalidUser="Invalid Username";
+                    errors.invalidPassword="";
+                    setError(errors);
+                }
+           
+       else if(Username=="")
+        {
+            errors.invalidUser="Enter the username";
+            errors.invalidPassword="";
+            setError(errors);
+            console.log(errors);
+        }
+      
+         else if(Password=="")
+        {
+            errors.invalidUser="";
+            errors.invalidPassword="Enter the password";
+            setError(errors);
+        }
+       
+        
+        else if(Username!="" && Password!=""){
+            errors.invalidPassword="";
+            errors.invalidUser="";
+            setError(errors);
         axios.post(url,{
             username:Username,
             password:Password
          }
-         ).then((response)=>{setUser(response.data)}).catch((error)=>{console.log(error)});
+         ).then((response)=>{setUser(response.data);setError([])}).catch((error)=>{console.log(error)});
 
               setTimeout(()=>{console.log(user)},2000);
+        }
     }
 
 
@@ -31,7 +66,7 @@ function Login() {
         {
 
             //it will not let to open the flightBoooking Directly
-            navigate("/flightBooking",{state:"101xx"});
+            navigate("/flightBooking",{state:{id:1,uname:Username}});
         }
         else if(user=="invalid")
         {
@@ -45,8 +80,11 @@ function Login() {
             
             <div id='loginid'>
                 <h2 id='loginh2'>Login</h2>
-            <input type="text" onChange={(e) => setUsername(e.target.value)} placeholder="Username"  required/>
+               <p>{errors.invalidUser}</p>
+            <input type="email" onChange={(e) => setUsername(e.target.value)} placeholder="Username"  required/>
+            <h4 style={{color:"white"}}>{Error.invalidUser}</h4>
             <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" required/>
+            <h4 style={{color:"white"}}>{Error.invalidPassword}</h4>
     <button onClick={()=>{ValidData()}} >Login</button>
     {/* <h4 style={{color:"white"}}>{user}</h4> */}
    

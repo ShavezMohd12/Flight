@@ -1,0 +1,120 @@
+.flightcontainer {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    max-width: 1200px;
+    margin: auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 10%;
+}
+
+.bookingContainer {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.error {
+    color: #ff4d4d;
+    background-color: #ffe6e6;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.bttn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+.bttn2 {
+    background-color:#007bff;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+   
+}
+
+.bttn:hover {
+    background-color: #0056b3;
+}
+
+.editContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.editContainer input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.editContainer .bttn {
+    background-color: #28a745;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 18px;
+}
+
+.table th {
+    background-color: #343a40;
+    color: white;
+}
+
+.table td {
+    background-color: #e9ecef;
+}
+
+.table .btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.table .btn-edit {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.table .btn-edit:hover {
+    background-color: #138496;
+}
+
+.table .btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.table .btn-delete:hover {
+    background-color: #c82333;
+}

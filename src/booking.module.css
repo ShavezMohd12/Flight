@@ -60,11 +60,55 @@ body {
   {
      margin:0;
    
-    background-image: url('C:\Users\Mohd Shavez\OneDrive\Desktop\FLIGHT BOOKING\project\project\src\bookingpage.png');
+    background-image: url('C:\Users\Mohd Shavez\OneDrive\Desktop\FLIGHT BOOKING\project\project\public\bookingpage.png');
     background-size: cover;
     
     height:100vh;
   }
   
+  .navbar
+  {
+    background-color: white;
+    height:fit-content;
+    overflow: hidden;
+  }
+  .ul{
+   
+    list-style: none;
+   
+    width:178px;
+   
+    
+  }
+  .li{
   
+    font-size: 20px;
+    
+   
+  }
+
   
+  .a{
+       float:right;
+ border: 1px solid rgb(61, 102, 214);
+ padding: 5px;
+  margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    border-radius:5px;
+    text-decoration: none;
+  }
+  .a:hover{
+        background-color: rgb(89, 163, 223);
+    text-decoration: none;
+    color:white;
+    border:1px rgb(61,102,214) solid;
+
+  }
+  .navname{
+    color:black;
+    float:left;
+    margin-left: 20%;
+    font-size: 20px;
+   margin-top:10px;
+  }

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import styles from './booking.module.css';
+import styles from '../booking.module.css';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Login from './components/Login';
+import Login from './Login';
 
 function FlightBooking() {
     const [Source, setSource] = useState('source');
@@ -13,13 +13,18 @@ function FlightBooking() {
     const [Flights, setFlights] = useState([]);
    const[Error,setError]=useState();
     const [SelectedClass, setSelectedClass] = useState('');
+    const[userdetail,setUserdetail]=useState([]);
+    const [status,setStatus]=useState(true);
     const location=useLocation();
     const navigate=useNavigate();
+  
+
+ 
     const handleSearch = () => {
 
         if(Source==" " || Destination==" " || Source=="" || Destination=="")
             {
-                alert("Enter the location11");
+                alert("Enter the location");
             }
         else if(Source==Destination)
         {
@@ -58,7 +63,7 @@ function FlightBooking() {
 
 
     
-        const ItemList= Flights.map((record)=>{
+        const ItemList= (Flights.length>0)?Flights.map((record)=>{
         return (
           <tr style={{textAlign:"center",fontSize:"20px"}}>
                 <td  style={{width:"200px"}}>{record.flightNumber}</td>
@@ -67,30 +72,58 @@ function FlightBooking() {
                 <td  style={{width:"200px"}}>{record.destination}</td>
                 <td  style={{width:"200px"}}>{record.flightClass}</td>
                 <td  style={{width:"200px"}}>{record.price}</td>
-                <td  style={{width:"200px"}}><button style={{backgroundColor:"red",width:"50%",marginTop:"0"}} onClick={()=>{alert("Booking page will render")}}>Book</button></td>
+         
+                <td  style={{width:"200px"}}><button style={{backgroundColor:"red",width:"50%",marginTop:"0"}} onClick={()=>{navigate("/payment",{state:{id:location.state.id,uname:location.state.uname,fNo:record.flightNumber,fAirline:record.airline,fDate:record.date,fPrice:record.price}})}}>Book</button></td>
           </tr>
 
         )
     }
-)
-    
-    function F_Error()
-    {
-        if(Error!==undefined)
-        {
-            return <span style={{color:"black",backgroundColor:"red",position:"relative",left:"47%",top:"10px",padding:"5px"}}> {Error}</span>
-        }
-    }
+):<tr><td colSpan="7" style={{ textAlign: "center" }}>No bookings available</td></tr>;
+     
+
+
+ 
+const manageBooking=()=>{
+       navigate("/manageBooking",{state:{id:location.state.id,uname:location.state.uname}})
+}
+
 
 
    
+    if(location.state==null)
+        {
+            return (
+                <>
+                 {alert("User Not Verified")}
+                
+                 
+            
+                 <Login/>
+                </>
+      
+            );
+        }
+        else{
 
+           
+            if(status){
+            const url="http://localhost:8081/getDetail/"+location.state.uname;
+
+            axios.get(url).then((response)=>{setUserdetail(response.data)}).catch((error)=>{console.log(error)});
+                setStatus(false);
+            }
 
     return (
-        <div>
-        {(location.state!="101xx")?<Login/>:
+        
+  
         
         <div  className={styles.flightcontainer} >
+            <nav className={styles.navbar}>
+            <a className={styles.navname}>{userdetail.name}</a>
+            <button className={styles.a} onClick={()=>{navigate("/login")}}>Log out</button>  
+            <button className={styles.a} onClick={manageBooking}>My Bookings</button>  
+              
+            </nav>
         <div  className={styles.bookingContainer}>
             <h2 id='loginh2'>Flight Booking</h2>
             <div className={styles.bootCont}>
@@ -133,7 +166,7 @@ function FlightBooking() {
           
 
             </div>
-            <F_Error/>
+            
            
         </div>
 
@@ -148,6 +181,7 @@ function FlightBooking() {
                     <th>Class</th>
                     <th>Price (INR)</th>
                     <th>Booking</th>
+                    
                 </tr>
                 </thead>
                 <tbody>
@@ -158,10 +192,14 @@ function FlightBooking() {
         </Table>
 
         </div>
+     );
         }
       
-       </div>
-    );
-}
+    
+    
+        }
+
+   
+
 
 export default FlightBooking;

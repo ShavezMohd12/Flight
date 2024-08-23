@@ -20,7 +20,7 @@ function Register() {
            
             axios.post(url,{
                 adhar:Number(Adhar),
-                name:Name,
+                name:Name.toUpperCase(),
                 email:String(Email),
                 phone:Number(Phone),
                 password:Password
