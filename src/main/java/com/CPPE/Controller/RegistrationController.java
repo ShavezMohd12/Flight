@@ -23,6 +23,7 @@ public class RegistrationController {
 	@Autowired
 	LoginRepo Lrepo;
 	
+	//this function is used to register the user details
 		@PostMapping("/register")
 		public String register(@RequestBody registration register)
 		{
@@ -47,6 +48,7 @@ public class RegistrationController {
 			
 		}
 		
+	// this function will send the detail of user with matching email id
 		@GetMapping("/getDetail/{email}")
 		public registration getName(@PathVariable String email)
 		{

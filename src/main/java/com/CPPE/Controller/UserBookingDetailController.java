@@ -29,8 +29,10 @@ public class UserBookingDetailController {
 	 @Autowired
 	 FlightDetailRepo frepo;
 	 
+	 //this function is used to insert the booking details of user after the payment is done
+	 
 	@PostMapping("/Booked")
-	public String insertUserBooking(@RequestBody UserBookingDetail detail)
+	public void insertUserBooking(@RequestBody UserBookingDetail detail)
 	{
 		System.out.println(detail.getStatus());
 		List<UserBookingDetail> find=new ArrayList<>();
@@ -39,7 +41,7 @@ public class UserBookingDetailController {
 		 {
 			 detail.setBookingId("1");
 			 userrepo.save(detail);
-			 return "added 1";
+
 		 }
 		 else
 		 {
@@ -48,10 +50,11 @@ public class UserBookingDetailController {
 			 Sno+=1;
 			 detail.setBookingId(String.valueOf(Sno));
 			 userrepo.save(detail);
-			 return "added";
+			
 		 }
 	}
 	
+	//this method is used to show all the booking details of the user if user click on show booking
 	@GetMapping("/getAllBooking/{email}")
 	public List<UserBookingDetail> fetchData(@PathVariable String email)
 	{
@@ -62,6 +65,8 @@ public class UserBookingDetailController {
 			return list;
 		
 	}
+	
+	//this method is used to delete the flight detail if user want to cancel the flight
 	@DeleteMapping("/cancelBooking/{id}")
 	public String deleteData(@PathVariable String id)
 	{
@@ -70,6 +75,8 @@ public class UserBookingDetailController {
 		return "deleted";
 	}
 	
+	
+	//this function is used when user want to edit the date of existing flight
 	@PutMapping("/editFlight/{bookingId}")
 	public String editFlightDate(@PathVariable String bookingId,@RequestBody UserBookingDetail detail)
 	{

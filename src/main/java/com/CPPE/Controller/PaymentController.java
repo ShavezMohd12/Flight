@@ -29,18 +29,23 @@ public class PaymentController {
     @Autowired
     private CardDetailRepo cardrepo;
 
+    //this function is used to receive the payment information from the user 
     @PostMapping("/processPayment")
     public String processPayment(@RequestBody Card_detail detail) {
     	System.out.println(detail.getCardNumber()+""+detail.getCvv()+""+detail.getExpiryDate()+""+detail.getName());
+    	
+    	//it will check details of the user card exist in database or not
     	if(cardrepo.existsById(detail.getCardNumber())==true && cardrepo.existsByName(detail.getName().toUpperCase())==true && cardrepo.existsByCvv(detail.getCvv())==true && cardrepo.existsByExpiryDate(detail.getExpiryDate())==true)
     	{
     		LocalDate date=LocalDate.now();
     		String presentDate=String.valueOf(date);
     		
+    		//if exist then it will send success
     		return "success";
     	}
     	else
     	{
+    	//else it will send failed
     		return "failed";
     	}
     	

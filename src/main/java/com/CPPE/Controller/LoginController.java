@@ -13,23 +13,27 @@ import com.CPPE.Credential.LoginCredential;
 import com.CPPE.JpaRepository.LoginRepo;
 
 @RestController
+//it is used to receive the request from the frontend port no 3000
 @CrossOrigin(origins = { "http://localhost:3000"})
 public class LoginController {
 	
 	@Autowired
 	LoginRepo repo;
 	
+	//this function is used to fetch the login detail of user
 	@PostMapping("/login")
 	public ResponseEntity<String> loginService(@RequestBody LoginCredential cred)
 	{
 		
 		
 		boolean output=repo.existsById(cred.getUsername());
+		// if username exist then it will send status login
 		if(output==true)
 		{
 			LoginCredential data=repo.findById(cred.getUsername()).get();
 			if(data.getPassword().equals(cred.getPassword()))
 			{
+				
 			return new ResponseEntity<>("login",HttpStatus.ACCEPTED);
 			}
 			else
@@ -37,6 +41,7 @@ public class LoginController {
 				return new ResponseEntity<>("invalid",HttpStatus.ACCEPTED);
 			}
 		}
+		// else it will send status invalid
 		else if(output==false)
 		{
 			return new ResponseEntity<>("invalid",HttpStatus.ACCEPTED);
@@ -45,11 +50,6 @@ public class LoginController {
 		return null;
 	}
 	
-	@GetMapping("/user")
-	public String get()
-	{
-//		Login=repo.findById(get())
-		return "working";
-	}
+	
 
 }
